@@ -10,6 +10,7 @@ It clears the status if you're not in a meeting.
 - node
 - [gcalcli](https://github.com/insanum/gcalcli)
   - install with `pip install gcalcli`
+  - run `gcalcli` to configure its authentication
   
 ## Installation
 - clone the repo
@@ -24,7 +25,7 @@ It clears the status if you're not in a meeting.
   
    - You can get a Slack token from https://api.slack.com/custom-integrations/legacy-tokens.
    - `calendar` is the name of your calendar (usually `yourname@buildo.io`)
-   
+      
 - run `node index.js` to update the status
 
 ## Continuously update
