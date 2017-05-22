@@ -19,7 +19,7 @@ function profileForMeeting(meeting) {
 }
 
 const agendaCommand = `
-  gcalcli --calendar ${calendar} agenda --nocolor $(date +%Y-%m-%dT%H:%M:%S) # $(date -v +1M +%Y-%m-%dT%H:%M:%S)
+  gcalcli --calendar ${calendar} agenda --nocolor $(date +%Y-%m-%dT%H:%M:%S) $(date -v +1M +%Y-%m-%dT%H:%M:%S)
 `;
 const agenda = execSync(agendaCommand).toString();
 const currentMeeting = agenda.split('\n').filter(x => x.trim() !== '')[0]
