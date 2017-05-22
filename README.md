@@ -10,7 +10,7 @@ It clears the status if you're not in a meeting.
 - node
 - [gcalcli](https://github.com/insanum/gcalcli)
   - install with `pip install gcalcli`
-  - run `gcalcli` to configure its authentication
+  - run `gcalcli agenda` to configure its authentication
   
 ## Installation
 - clone the repo
