@@ -23,10 +23,15 @@ const agendaCommand = `
 `;
 const agenda = execSync(agendaCommand).toString();
 const currentMeeting = agenda.split('\n').filter(x => x.trim() !== '')[0]
-const profile = profileForMeeting(currentMeeting === 'No Events Found...' ? null : currentMeeting);
+const profile = profileForMeeting(currentMeeting);
 const endpoint = `
   https://slack.com/api/users.profile.set?token=${slackToken}&profile=${profile}&pretty=1
 `;
 
-console.log(`Setting status to ${JSON.stringify(currentMeeting.replace(/\t/, ' '))}`);
+if (currentMeeting) {
+  console.log(`Setting status to ${JSON.stringify(currentMeeting.replace(/\t/, ' '))}`);
+} else {
+  console.log('Clearing the current status');
+}
+
 axios.get(endpoint).catch(console.log.bind(console));
