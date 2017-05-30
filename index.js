@@ -4,7 +4,7 @@ const moment = require('moment');
 
 const configurations = require('./config.json');
 
-function profileForMeeting(meeting) {
+function profileForMeeting(meeting, defaultEmoji) {
   if (meeting) {
     const [startDate, startTime, endDate, endTime, title] = meeting.split('\t');
     return encodeURIComponent(JSON.stringify({
@@ -14,12 +14,12 @@ function profileForMeeting(meeting) {
   } else {
     return encodeURIComponent(JSON.stringify({
       "status_text": "",
-      "status_emoji": ""
+      "status_emoji": defaultEmoji
     }));
   }
 }
 
-function updateStatus({ slackToken, calendar }) {
+function updateStatus({ slackToken, calendar, defaultEmoji = '' }) {
   const now = moment().format();
   const nowPlus1m = moment().add(1, 'minute').format();
 
@@ -28,15 +28,15 @@ function updateStatus({ slackToken, calendar }) {
   `;
   const agenda = execSync(agendaCommand).toString();
   const currentMeeting = agenda.split('\n').filter(x => x.trim() !== '')[0]
-  const profile = profileForMeeting(currentMeeting);
+  const profile = profileForMeeting(currentMeeting, defaultEmoji);
   const endpoint = `
     https://slack.com/api/users.profile.set?token=${slackToken}&profile=${profile}&pretty=1
   `;
 
   if (currentMeeting) {
-    console.log(`Setting status to ${JSON.stringify(currentMeeting.replace(/\t/, ' '))}`);
+    console.log(`[${calendar}] Setting status to ${JSON.stringify(currentMeeting.replace(/\t/, ' '))}`);
   } else {
-    console.log('Clearing the current status');
+    console.log(`[${calendar}] Clearing the current status`);
   }
 
   return axios.get(endpoint).catch(console.log.bind(console));
