@@ -29,5 +29,5 @@ It clears the status if you're not in a meeting.
 
 - run `node index.js` to update the status
 
-## Deplou
-Notes: this is deployed on JAR and ran by a cron job every minute.
+## Deploy
+This is deployed on JAR and ran by a cron job every minute.
