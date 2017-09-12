@@ -29,9 +29,5 @@ It clears the status if you're not in a meeting.
 
 - run `node index.js` to update the status
 
-## Continuously update
-The command will update the status once. In order to continuously update the status, you'll have to schedule its run with an external tool.
-
-Personally, I simply sneaked the call to the app into this BitBar plugin https://github.com/buildo/bitbar-plugins/tree/master/next-meeting, so that whenever the status bar is updated with my next meeting, Slack is updated with my current meeting.
-
-Of course, you can get creative (cron, systemd, whatever)
+## Deplou
+Notes: this is deployed on JAR and ran by a cron job every minute.
